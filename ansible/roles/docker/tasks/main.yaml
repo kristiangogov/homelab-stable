@@ -1,0 +1,49 @@
+- name: Add Docker CE repo
+  ansible.builtin.command:
+    cmd: dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
+    creates: /etc/yum.repos.d/docker-ce.repo
+
+- name: Install Docker packages
+  ansible.builtin.dnf:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: present
+
+- name: Enable and start Docker service
+  ansible.builtin.systemd:
+    name: docker
+    enabled: true
+    state: started
+
+- name: Point iptables to iptables-nft (Fedora requirement)
+  ansible.builtin.command:
+    cmd: alternatives --set iptables /usr/bin/iptables-nft
+  register: iptables_alt
+  changed_when: "'already' not in iptables_alt.stdout"
+  notify: Restart docker
+
+- name: Ensure docker group exists
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: Add ansible_user to docker group
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: true
+  register: docker_group_add
+
+- name: Notify if re-login required
+  ansible.builtin.debug:
+    msg: "{{ ansible_user }} was added to the docker group. Log out/in (or reconnect SSH) for it to take effect."
+  when: docker_group_add.changed
+
+- name: Ensure 'homelab' Docker network exists
+  community.docker.docker_network:
+    name: homelab
+    state: present

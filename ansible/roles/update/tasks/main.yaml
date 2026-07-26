@@ -1,0 +1,22 @@
+- name: Ensure dnf-utils is installed
+  ansible.builtin.dnf:
+    name: dnf-utils
+    state: present
+
+- name: Run dnf update
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+  register: dnf_update
+
+- name: Check if reboot is required
+  ansible.builtin.command:
+    cmd: needs-restarting -r
+  register: reboot_check
+  failed_when: reboot_check.rc not in [0, 1]
+  changed_when: false
+
+- name: Reboot if needed
+  ansible.builtin.reboot:
+    reboot_timeout: 600
+  when: reboot_check.rc == 1

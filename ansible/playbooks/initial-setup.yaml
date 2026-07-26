@@ -1,0 +1,9 @@
+---
+- name: Initial host setup
+  hosts: thinkcentre
+  become: true
+
+  roles:
+    - update
+    - docker
+    - nfs-mount

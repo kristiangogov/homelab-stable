@@ -1,0 +1,20 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:10.11.8
+    container_name: jellyfin
+    restart: unless-stopped
+    ports:
+      - "8096:8096"
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+      TZ: "UTC"
+    volumes:
+      - /mnt/nas_config/jellyfin/jellyfin-config:/config
+      - /mnt/nas_media:/media
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true

@@ -1,0 +1,19 @@
+- name: Ensure NFS client utilities are installed
+  ansible.builtin.dnf:
+    name: nfs-utils
+    state: present
+
+- name: Ensure NAS mount points exist
+  ansible.builtin.file:
+    path: "{{ item.mount_point }}"
+    state: directory
+  loop: "{{ nas_mounts }}"
+
+- name: Mount NAS exports
+  ansible.posix.mount:
+    src: "{{ nas_ip }}:{{ item.export }}"
+    path: "{{ item.mount_point }}"
+    fstype: nfs
+    opts: _netdev,x-systemd.automount,noatime
+    state: mounted
+  loop: "{{ nas_mounts }}"

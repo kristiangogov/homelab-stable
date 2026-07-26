@@ -1,0 +1,17 @@
+services:
+  silverbullet:
+    image: ghcr.io/silverbulletmd/silverbullet:latest
+    container_name: silverbullet
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    volumes:
+      - /mnt/nas_config/silverbullet/silverbullet-space:/space
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true

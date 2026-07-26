@@ -1,0 +1,7 @@
+nas_ip: 192.168.0.104
+
+nas_mounts:
+  - export: /mnt/data/config
+    mount_point: /mnt/nas_config
+  - export: /mnt/data/media
+    mount_point: /mnt/nas_media

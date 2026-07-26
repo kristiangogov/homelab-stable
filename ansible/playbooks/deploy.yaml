@@ -1,0 +1,6 @@
+- name: Deploy a service via docker compose
+  hosts: thinkcentre
+  become: true
+
+  roles:
+    - compose-deploy

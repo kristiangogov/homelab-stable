@@ -1,0 +1,23 @@
+- name: Fail if service var not provided
+  ansible.builtin.fail:
+    msg: "You must pass -e service=<name>"
+  when: service is not defined
+
+- name: Ensure remote service directory exists
+  ansible.builtin.file:
+    path: "/opt/homelab/{{ service }}"
+    state: directory
+    mode: "0755"
+
+- name: Copy service files to host
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/../../services/{{ service }}/"
+    dest: "/opt/homelab/{{ service }}/"
+    mode: preserve
+
+- name: Run docker compose up
+  ansible.builtin.command:
+    cmd: docker compose up -d --remove-orphans
+    chdir: "/opt/homelab/{{ service }}"
+  register: compose_result
+  changed_when: "'Started' in compose_result.stderr or 'Created' in compose_result.stderr"
