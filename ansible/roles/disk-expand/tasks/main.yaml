@@ -1,0 +1,19 @@
+- name: Check current size of root logical volume
+  ansible.builtin.command:
+    cmd: lvs --noheadings --units g -o lv_size /dev/mapper/fedora-root
+  register: root_lv_size
+  changed_when: false
+
+- name: Extend root logical volume to use all free VG space
+  ansible.builtin.command:
+    cmd: lvextend -l +100%FREE /dev/mapper/fedora-root
+  register: lvextend_result
+  changed_when: "'Insufficient free space' not in lvextend_result.stderr and 'successfully resized' in lvextend_result.stdout"
+  failed_when:
+    - lvextend_result.rc != 0
+    - "'matches existing size' not in lvextend_result.stdout"
+
+- name: Grow XFS filesystem to match extended volume
+  ansible.builtin.command:
+    cmd: xfs_growfs /
+  when: lvextend_result.changed

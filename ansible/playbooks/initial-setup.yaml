@@ -4,6 +4,7 @@
   become: true
 
   roles:
+    - disk-expand
     - update
     - docker
     - nfs-mount

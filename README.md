@@ -9,19 +9,7 @@ Self-hosted services running on Docker Compose, fully managed by Ansible.
 - NAS reachable on the network with NFS exports for config and media
 - A Cloudflare account, domain on Cloudflare DNS, and a Tunnel already created
 
-Set the following in `ansible/inventory/group_vars/all/main.yaml`:
-
-```yaml
-nas_ip: 192.168.0.104
-
-nas_mounts:
-  - export: /mnt/data/config
-    mount_point: /mnt/nas_config
-  - export: /mnt/data/media
-    mount_point: /mnt/nas_media
-```
-
-Update `ansible/inventory/hosts.ini` with your host's IP and SSH user.
+Update `ansible/inventory/hosts.ini` and `ansible/inventory/group_vars/all/main.yaml` with your host and NAS info.
 
 ### Host prep
 
@@ -74,6 +62,10 @@ To-be-implemented.
 | ![Jellyfin](https://cdn.simpleicons.org/jellyfin?size=32) | Jellyfin | Media streaming service | 
 | <img src="https://repository-images.githubusercontent.com/459944886/a6e61d23-9090-4cc4-946d-c5d9c189240f" width="32" height="32" /> | SilverBullet.md | Programmable browser-based Markdown editor |
 | ![Karakeep](https://cdn.simpleicons.org/karakeep?size=32) | Karakeep | Bookmark manager | 
+| ![OpenWebUI](https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/open-webui-light.svg) | Open WebUI | Self-hosted AI Platform | 
+
+> [!NOTE]
+> Open WebUI connects to Ollama running natively on a separate GPU workstation (`192.168.0.110`), since neither the server nor NAS has a GPU. Ollama must be running and reachable on the LAN for chat to work; Open WebUI itself stays up independently.
 
 ### Backup Strategy
 

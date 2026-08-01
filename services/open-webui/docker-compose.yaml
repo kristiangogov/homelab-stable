@@ -1,0 +1,17 @@
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    restart: unless-stopped
+    ports:
+      - "3002:8080"
+    environment:
+      OLLAMA_BASE_URL: "http://192.168.0.110:11434"
+    volumes:
+      - ./data:/app/backend/data
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true
