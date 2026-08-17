@@ -1,0 +1,26 @@
+- name: Check current filesystem on /dev/sda1
+  ansible.builtin.command:
+    cmd: blkid -o value -s TYPE /dev/sda1
+  register: current_fs
+  changed_when: false
+  failed_when: false
+
+- name: Format /dev/sda1 as ext4
+  community.general.filesystem:
+    fstype: ext4
+    dev: /dev/sda1
+    force: true
+  when: current_fs.stdout != "ext4"
+
+- name: Ensure Frigate storage mount point exists
+  ansible.builtin.file:
+    path: /mnt/frigate-storage
+    state: directory
+
+- name: Mount Frigate storage
+  ansible.posix.mount:
+    src: /dev/sda1
+    path: /mnt/frigate-storage
+    fstype: ext4
+    opts: defaults,noatime
+    state: mounted

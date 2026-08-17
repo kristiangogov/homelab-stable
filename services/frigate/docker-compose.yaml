@@ -1,0 +1,21 @@
+services:
+  frigate:
+    image: ghcr.io/blakeblackshear/frigate:stable
+    container_name: frigate
+    restart: unless-stopped
+    privileged: false
+    shm_size: "256mb"
+    ports:
+      - "8971:8971"
+    devices:
+      - /dev/dri:/dev/dri
+    volumes:
+      - ./config:/config
+      - /mnt/frigate-storage:/media/frigate
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - homelab
+
+networks:
+  homelab:
+    external: true

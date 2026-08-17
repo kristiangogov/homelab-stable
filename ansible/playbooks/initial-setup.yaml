@@ -8,3 +8,4 @@
     - update
     - docker
     - nfs-mount
+    - frigate-storage

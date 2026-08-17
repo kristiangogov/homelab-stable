@@ -3,6 +3,11 @@
     msg: "You must pass -e service=<name>"
   when: service is not defined
 
+- name: Load service-specific vars if present
+  ansible.builtin.include_vars:
+    file: "{{ playbook_dir }}/../../services/{{ service }}/vars.yaml"
+  when: (playbook_dir + '/../../services/' + service + '/vars.yaml') is exists
+
 - name: Ensure remote service directory exists
   ansible.builtin.file:
     path: "/opt/homelab/{{ service }}"
@@ -14,6 +19,14 @@
     src: "{{ playbook_dir }}/../../services/{{ service }}/"
     dest: "/opt/homelab/{{ service }}/"
     mode: preserve
+
+- name: Set ownership on service directory (if defined)
+  ansible.builtin.file:
+    path: "/opt/homelab/{{ service }}"
+    owner: "{{ service_owner_uid }}"
+    group: "{{ service_owner_gid }}"
+    recurse: true
+  when: service_owner_uid is defined and service_owner_gid is defined
 
 - name: Run docker compose up
   ansible.builtin.command:
