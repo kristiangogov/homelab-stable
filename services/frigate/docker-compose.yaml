@@ -9,6 +9,8 @@ services:
       - "8971:8971"
     devices:
       - /dev/dri:/dev/dri
+    env_file:
+      - .env 
     volumes:
       - ./config:/config
       - /mnt/frigate-storage:/media/frigate
