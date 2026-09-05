@@ -1,6 +1,9 @@
 mqtt:
+  enabled: true
   host: mosquitto
   port: 1883
+  topic_prefix: frigate
+  client_id: frigate
 
 detectors:
   ov:
@@ -15,4 +18,53 @@ model:
   input_pixel_format: bgr
   labelmap_path: /openvino-model/coco_91cl_bkgr.txt
 
-cameras: {}
+record:
+  enabled: true
+  retain:
+    days: 3
+    mode: motion
+  events:
+    retain:
+      default: 14
+      mode: active_objects
+
+snapshots:
+  enabled: true
+  retain:
+    default: 14
+
+detect:
+  enabled: true
+
+cameras:
+  yard:
+    ffmpeg:
+      inputs:
+        - path: 
+          roles:
+            - detect
+            - record
+    detect:
+      width: 1280
+      height: 720
+      fps: 5
+    objects:
+      track:
+        - person
+        - dog
+
+  gate:
+    ffmpeg:
+      inputs:
+        - path: 
+          roles:
+            - detect
+            - record
+    detect:
+      width: 1280
+      height: 720
+      fps: 5
+    objects:
+      track:
+        - person
+        - dog
