@@ -58,11 +58,12 @@ Services that shouldn't be reachable from the public internet (e.g. Frigate) are
 
 ### Monitoring
 
-To-be-implemented.
+Proper monitoring solution will be implemented when time allows. The current setup relies on a mix of an Uptime Kuma instance hosted on the TrueNAS and Glance dashboard metrics displaying the status of docker containers and services.
 
 ### Services
 | Logo | Name | Description |
 |:-:|-----|-------------|
+| ![Glance](https://cdn.simpleicons.org/glance?size=32) | Glance | A lightweight, highly customizable dashboard | 
 | ![Jellyfin](https://cdn.simpleicons.org/jellyfin?size=32) | Jellyfin | Media streaming service | 
 | <img src="https://repository-images.githubusercontent.com/459944886/a6e61d23-9090-4cc4-946d-c5d9c189240f" width="32" height="32" /> | SilverBullet.md | Programmable browser-based Markdown editor |
 | ![Karakeep](https://cdn.simpleicons.org/karakeep?size=32) | Karakeep | Bookmark manager | 
