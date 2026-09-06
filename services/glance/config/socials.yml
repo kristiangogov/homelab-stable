@@ -1,0 +1,32 @@
+- name: Socials
+  # Optionally, if you only have a single page you can hide the desktop navigation for a cleaner look
+  # hide-desktop-navigation: true
+  columns:
+    - size: full
+      widgets:
+
+        - type: group
+          widgets:
+            - type: reddit
+              subreddit: homelab
+              show-thumbnails: true
+            - type: reddit
+              subreddit: selfhosted
+              show-thumbnails: true
+            - type: reddit
+              subreddit: bulgaria
+              show-thumbnails: true
+            - type: reddit
+              subreddit: advice
+              show-thumbnails: true
+            - type: reddit
+              subreddit: sofia
+              show-thumbnails: true 
+              
+    - size: full
+      widgets:
+
+        - type: videos
+          channels:
+            - UCCwDI553aE7_f_rrl8ISOdQ
+            - UCOk-gHyjcWZNj3Br4oxwh0A        

@@ -1,0 +1,53 @@
+- name: Services
+  # Optionally, if you only have a single page you can hide the desktop navigation for a cleaner look
+  # hide-desktop-navigation: true
+  columns:
+    - size: full
+      widgets:
+        - type: server-stats
+          servers:
+            - type: local
+              name: ThinkCentre
+              cpu-temp-sensor: coretemp-isa-0000
+              mountpoints:
+                "/":
+                  name: SSD
+                "/mnt/frigate-storage":
+                  name: HDD
+            - type: remote
+              name: TrueNAS
+              url: http://192.168.0.104:27973
+              token: ${TRUENAS_TOKEN}
+              cpu-temp-sensor: coretemp-isa-0000     
+            
+        - type: monitor
+          cache: 1m
+          sites:
+            - title: Frigate
+              url: https://thinkcentre:8971
+              icon: si:frigate
+              allow-insecure: true
+            - title: Home Assistant
+              url: http://thinkcentre:8123
+              icon: si:homeassistant          
+            - title: TrueNAS
+              url: https://truenas
+              check-url: https://192.168.0.104
+              icon: si:truenas 
+              allow-insecure: true
+            - title: Karakeep
+              url: https://karakeep.gogov.dev
+              icon: si:karakeep            
+            - title: SilverBullet.md
+              url: https://notes.gogov.dev
+              icon: si:thanos
+            - title: Open WebUI
+              url: https://ai.gogov.dev
+              icon: si:await
+            - title: Jellyfin
+              url: https://jellyfin.gogov.dev
+              icon: si:jellyfin
+
+        - type: docker-containers
+          hide-by-default: false
+          running-only: false     
