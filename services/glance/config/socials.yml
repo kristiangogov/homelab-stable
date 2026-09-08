@@ -19,10 +19,8 @@
             - type: reddit
               subreddit: advice
               show-thumbnails: true
-            - type: reddit
-              subreddit: sofia
-              show-thumbnails: true 
-              
+
+
     - size: full
       widgets:
 
@@ -30,3 +28,10 @@
           channels:
             - UCCwDI553aE7_f_rrl8ISOdQ
             - UCOk-gHyjcWZNj3Br4oxwh0A        
+
+        - type: videos
+          title: My Playlist
+          style: grid-cards
+          playlists:
+            - PL8mG-RkN2uTyZZ00ObwZxxoG_nJbs3qec
+          collapse-after-rows: 4    

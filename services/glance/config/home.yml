@@ -270,6 +270,9 @@
           style: compact
           cache: 1m
           sites:
+            - title: Dozzle
+              url: http://thinkcentre:8081
+              icon: si:docker
             - title: Frigate
               url: https://thinkcentre:8971
               icon: si:frigate
