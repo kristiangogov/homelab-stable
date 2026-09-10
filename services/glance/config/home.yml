@@ -270,6 +270,11 @@
           style: compact
           cache: 1m
           sites:
+            - title: Uptime Kuma
+              url: http://truenas:31050/dashboard
+              check-url: http://192.168.0.104:31050/dashboard
+              icon: si:uptimekuma
+              allow-insecure: true
             - title: Dozzle
               url: http://thinkcentre:8081
               icon: si:docker
