@@ -55,6 +55,7 @@ Services that shouldn't be reachable from the public internet (e.g. Frigate) are
 | ![Ansible](https://cdn.simpleicons.org/ansible/f00?size=32) | Ansible | Automation tool for configuration and orchestration |
 | <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/cloudflare-zero-trust.png" width="32" height="32" />  | Cloudflare | Zero-Trust Tunnel for exposing services securely on a the internet |
 | ![Tailscale](https://cdn.simpleicons.org/tailscale?size=32) | Tailscale | Private mesh network for services not exposed publicly |
+| <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/dozzle.webp" width="32" height="32" /> | Dozzle | Web-based log viewer for Docker | 
 
 ### Monitoring
 
@@ -64,8 +65,10 @@ Proper monitoring solution will be implemented when time allows. The current set
 | Logo | Name | Description |
 |:-:|-----|-------------|
 | ![Glance](https://cdn.simpleicons.org/glance?size=32) | Glance | A lightweight, highly customizable dashboard | 
+| <img src="https://kaneo.app/logo-512.png" width="32" height="32" /> | Kaneo | Project management tool designed to provide a clean, zero-bloat Kanban experience | 
+| <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/docmost.webp" width="32" height="32" /> | Docmost | Personal wiki and documentation platform | 
 | ![Jellyfin](https://cdn.simpleicons.org/jellyfin?size=32) | Jellyfin | Media streaming service | 
-| <img src="https://repository-images.githubusercontent.com/459944886/a6e61d23-9090-4cc4-946d-c5d9c189240f" width="32" height="32" /> | SilverBullet.md | Programmable browser-based Markdown editor |
+| <img src="https://repository-images.githubusercontent.com/459944886/a6e61d23-9090-4cc4-946d-c5d9c189240f" width="32" height="32" /> | SilverBullet | Programmable browser-based Markdown editor |
 | ![Karakeep](https://cdn.simpleicons.org/karakeep?size=32) | Karakeep | Bookmark manager | 
 | ![OpenWebUI](https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/open-webui-light.svg) | Open WebUI | Self-hosted AI Platform |
 | <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/mqtt.svg" width="32" height="32" /> | Mosquitto | MQTT broker for Frigate/Home Assistant events |
