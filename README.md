@@ -65,8 +65,8 @@ Proper monitoring solution will be implemented when time allows. The current set
 | Logo | Name | Description |
 |:-:|-----|-------------|
 | ![Glance](https://cdn.simpleicons.org/glance?size=32) | Glance | A lightweight, highly customizable dashboard | 
-| <img src="https://kaneo.app/logo-512.png" width="32" height="32" /> | Kaneo | Project management tool designed to provide a clean, zero-bloat Kanban experience | 
-| <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/docmost.webp" width="32" height="32" /> | Docmost | Personal wiki and documentation platform | 
+| <img src="https://kaneo.app/logo-512.png" width="32" height="32" /> | Kaneo | Project management tool | 
+| <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/docmost.webp" width="32" height="32" /> | Docmost | Wiki and documentation platform | 
 | ![Jellyfin](https://cdn.simpleicons.org/jellyfin?size=32) | Jellyfin | Media streaming service | 
 | <img src="https://repository-images.githubusercontent.com/459944886/a6e61d23-9090-4cc4-946d-c5d9c189240f" width="32" height="32" /> | SilverBullet | Programmable browser-based Markdown editor |
 | ![Karakeep](https://cdn.simpleicons.org/karakeep?size=32) | Karakeep | Bookmark manager | 
