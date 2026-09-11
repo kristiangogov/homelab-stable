@@ -1,0 +1,46 @@
+services:
+  docmost:
+    image: docmost/docmost:latest
+    container_name: docmost
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - .env
+    ports:
+      - "3003:3000"
+    restart: unless-stopped
+    volumes:
+      - docmost:/app/data/storage
+    networks:
+      - homelab
+
+  db:
+    image: postgres:18
+    container_name: docmost-postgres
+    env_file:
+      - .env
+    restart: unless-stopped
+    volumes:
+      - db_data:/var/lib/postgresql
+    networks:
+      - homelab
+
+  redis:
+    image: redis:8
+    container_name: docmost-redis
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory-policy", "noeviction"]
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    networks:
+      - homelab
+
+volumes:
+  docmost:
+  db_data:
+  redis_data:
+
+networks:
+  homelab:
+    external: true

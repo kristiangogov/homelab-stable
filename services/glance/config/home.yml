@@ -288,6 +288,9 @@
             - title: Kaneo
               url: https://kaneo.gogov.dev
               icon: si:todoist
+            - title: Docmost
+              url: https://docs.gogov.dev
+              icon: si:docmost                      
             - title: TrueNAS
               url: https://truenas
               check-url: https://192.168.0.104
