@@ -1,6 +1,11 @@
 - name: Deploy a service via docker compose
-  hosts: thinkcentre
+  hosts: "{{target}}"
   become: true
+
+  vars_prompt:
+  - name: target
+    prompt: "Which host should this run against?"
+    private: false
 
   roles:
     - compose-deploy
