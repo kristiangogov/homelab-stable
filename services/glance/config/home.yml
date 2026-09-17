@@ -19,7 +19,16 @@
   columns:
     - size: small
       widgets:
-
+        - type: bookmarks
+          groups:
+            - links:
+                - title: Proxmox
+                  url: https://192.168.0.250:8006/
+                - title: TrueNAS
+                  url: https://truenas
+                - title: Github
+                  url: https://github.com/kristiangogov
+                  
         - type: weather
           location: Pernik, Bulgaria
           units: metric
@@ -267,7 +276,6 @@
 
         - type: monitor
           title: Services
-          style: compact
           cache: 1m
           sites:
             - title: Uptime Kuma
