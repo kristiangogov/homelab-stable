@@ -7,16 +7,20 @@ mqtt:
 
 detectors:
   ov:
-    type: openvino
-    device: GPU
+    # type: openvino
+    # device: GPU
 
-model:
-  path: /openvino-model/ssdlite_mobilenet_v2.xml
-  width: 300
-  height: 300
-  input_tensor: nhwc
-  input_pixel_format: bgr
-  labelmap_path: /openvino-model/coco_91cl_bkgr.txt
+    ### For testing only.
+    type: cpu
+    num_threads: 2
+
+# model:
+#   path: /openvino-model/ssdlite_mobilenet_v2.xml
+#   width: 300
+#   height: 300
+#   input_tensor: nhwc
+#   input_pixel_format: bgr
+#   labelmap_path: /openvino-model/coco_91cl_bkgr.txt
 
 record:
   enabled: true
@@ -47,7 +51,7 @@ cameras:
     detect:
       width: 1280
       height: 720
-      fps: 5
+      fps: 3
     objects:
       track:
         - person
@@ -63,7 +67,7 @@ cameras:
     detect:
       width: 1280
       height: 720
-      fps: 5
+      fps: 3
     objects:
       track:
         - person

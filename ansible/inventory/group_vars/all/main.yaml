@@ -5,3 +5,7 @@ nas_mounts:
     mount_point: /mnt/nas_config
   - export: /mnt/data/media
     mount_point: /mnt/nas_media
+  - export: /mnt/data/storage
+    mount_point: /mnt/nas_storage
+  - export: /mnt/data/backup
+    mount_point: /mnt/nas_backup  
