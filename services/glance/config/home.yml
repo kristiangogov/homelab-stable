@@ -19,6 +19,7 @@
   columns:
     - size: small
       widgets:
+
         - type: bookmarks
           groups:
             - links:
@@ -28,7 +29,89 @@
                   url: https://truenas
                 - title: Github
                   url: https://github.com/kristiangogov
-                  
+
+        - type: custom-api
+          title: Backup
+          cache: 1m
+          url: http://localhost:8080/assets/backup-status.json
+          template: |
+            <div>Backup last ran
+              <span {{ .JSON.String "last_run" | parseRelativeTime "rfc3339" }}></span>
+            </div>  
+            
+        - type: calendar
+          first-day-of-week: monday     
+
+    - size: full
+      widgets:
+
+        - type: server-stats
+          servers:
+            - type: local
+              name: ThinkCentre
+              cpu-temp-sensor: coretemp-isa-0000
+              mountpoints:
+                "/":
+                  name: SSD
+                "/mnt/frigate-storage":
+                  name: HDD
+            - type: remote
+              name: TrueNAS
+              url: http://192.168.0.104:27973
+              token: ${TRUENAS_TOKEN}
+              cpu-temp-sensor: coretemp-isa-0000
+
+        - type: monitor
+          title: Services
+          cache: 1m
+          sites:
+            - title: Uptime Kuma
+              url: http://truenas:31050/dashboard
+              check-url: http://192.168.0.104:31050/dashboard
+              icon: si:uptimekuma
+              allow-insecure: true
+            - title: Dozzle
+              url: http://thinkcentre:8081
+              icon: si:docker
+            - title: Frigate
+              url: https://thinkcentre:8971
+              icon: si:frigate
+              allow-insecure: true
+            - title: Home Assistant
+              url: http://thinkcentre:8123
+              icon: si:homeassistant          
+            - title: Kaneo
+              url: https://kaneo.gogov.dev
+              icon: si:todoist
+            - title: Docmost
+              url: https://docs.gogov.dev
+              icon: si:googledocs                      
+            - title: TrueNAS
+              url: https://truenas
+              check-url: https://192.168.0.104
+              icon: si:truenas 
+              allow-insecure: true
+            - title: Karakeep
+              url: https://karakeep.gogov.dev
+              icon: si:karakeep            
+            - title: SilverBullet.md
+              url: https://notes.gogov.dev
+              icon: si:thanos
+            - title: Open WebUI
+              url: https://ai.gogov.dev
+              icon: si:await
+            - title: Jellyfin
+              url: https://jellyfin.gogov.dev
+              icon: si:jellyfin
+
+        - type: docker-containers
+          hide-by-default: false
+          running-only: false      
+              
+
+
+    - size: small
+      widgets:
         - type: weather
           location: Pernik, Bulgaria
           units: metric
@@ -253,82 +336,3 @@
 
               </div>
             </div>    
-          
-
-    - size: full
-      widgets:
-
-        - type: server-stats
-          servers:
-            - type: local
-              name: ThinkCentre
-              cpu-temp-sensor: coretemp-isa-0000
-              mountpoints:
-                "/":
-                  name: SSD
-                "/mnt/frigate-storage":
-                  name: HDD
-            - type: remote
-              name: TrueNAS
-              url: http://192.168.0.104:27973
-              token: ${TRUENAS_TOKEN}
-              cpu-temp-sensor: coretemp-isa-0000
-
-        - type: monitor
-          title: Services
-          cache: 1m
-          sites:
-            - title: Uptime Kuma
-              url: http://truenas:31050/dashboard
-              check-url: http://192.168.0.104:31050/dashboard
-              icon: si:uptimekuma
-              allow-insecure: true
-            - title: Dozzle
-              url: http://thinkcentre:8081
-              icon: si:docker
-            - title: Frigate
-              url: https://thinkcentre:8971
-              icon: si:frigate
-              allow-insecure: true
-            - title: Home Assistant
-              url: http://thinkcentre:8123
-              icon: si:homeassistant          
-            - title: Kaneo
-              url: https://kaneo.gogov.dev
-              icon: si:todoist
-            - title: Docmost
-              url: https://docs.gogov.dev
-              icon: si:googledocs                      
-            - title: TrueNAS
-              url: https://truenas
-              check-url: https://192.168.0.104
-              icon: si:truenas 
-              allow-insecure: true
-            - title: Karakeep
-              url: https://karakeep.gogov.dev
-              icon: si:karakeep            
-            - title: SilverBullet.md
-              url: https://notes.gogov.dev
-              icon: si:thanos
-            - title: Open WebUI
-              url: https://ai.gogov.dev
-              icon: si:await
-            - title: Jellyfin
-              url: https://jellyfin.gogov.dev
-              icon: si:jellyfin
-
-        - type: docker-containers
-          hide-by-default: false
-          running-only: false      
-              
-              
-    - size: small
-      widgets:
-        
-
-        - type: calendar
-          first-day-of-week: monday
-
-        - type: to-do  
-
-

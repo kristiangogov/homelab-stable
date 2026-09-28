@@ -31,4 +31,8 @@ ssh server@thinkcentre "
     > /mnt/nas_backup/homelab/home-assistant/config-${timestamp}.tar.gz
 "
 
+ssh server@thinkcentre "docker exec -i glance sh -c 'cat > /app/assets/backup-status.json'" \
+  <<< "{\"last_run\": \"$(date -Iseconds)\"}"
+
+
 echo "Home Assistant backup complete."
